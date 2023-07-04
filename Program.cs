@@ -1,24 +1,88 @@
 ﻿ using ExemploExplorando.Models;
  using System.Globalization;
+ using Newtonsoft.Json;
 
-LeituraArquivo arquivo = new LeituraArquivo();
+string conteudoArquivo = File.ReadAllText("Arquivos/vendas.json");
 
-var (sucesso, linhasArquivo, quantidadeLinhas) = arquivo.LerArquivo("Arquivos/arquivosleitura.txt");
+List<Venda> listaVenda = JsonConvert.DeserializeObject<List<Venda>>(conteudoArquivo);
 
-if(sucesso)
+foreach (Venda venda in listaVenda)
 {
-    Console.WriteLine("Quantidade linhas do arquivo:" + quantidadeLinhas);
-    foreach (string linha in linhasArquivo)
-    {
-        Console.WriteLine(linha);
-    }
+    Console.WriteLine($"Id: {venda.Id}, Produto {venda.Produto}, Preço {venda.Preco}, Data {venda.DataVenda}");
 }
-else
-{
-    Console.WriteLine("Não foi possível ler o arquivo");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //using Models;
+
+// DateTime dataAtual = DateTime.Now;
+
+// List<Venda> listaVendas = new List<Venda>();
+
+// Venda v1 = new Venda (1, "Material de escritorio", 25.00M, dataAtual);
+// Venda v2 = new Venda (2, "Licença de software", 150.00M, dataAtual);
+
+// listaVendas.Add(v1);
+// listaVendas.Add(v2);
+
+// string serializado = JsonConvert.SerializeObject(listaVendas, Formatting.Indented);
+
+// File.WriteAllText("Arquivos/vendas.json", serializado);
+
+// Console.WriteLine(serializado);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LeituraArquivo arquivo = new LeituraArquivo();
+
+// var (sucesso, linhasArquivo, quantidadeLinhas) = arquivo.LerArquivo("Arquivos/arquivosleitura.txt");
+
+// if(sucesso)
+// {
+//     Console.WriteLine("Quantidade linhas do arquivo:" + quantidadeLinhas);
+//     foreach (string linha in linhasArquivo)
+//     {
+//         Console.WriteLine(linha);
+//     }
+// }
+// else
+// {
+//     Console.WriteLine("Não foi possível ler o arquivo");
     
 
-}
+// }
 
 
 
